@@ -1,0 +1,35 @@
+/*
+ *RPG Game main menu style sheet
+ *Filename: menu.css
+ *
+ *Date: August 27, 2019
+ *Author: Travis Andre, Colton Adkins, Christian Cadwell
+ *RPG GAME
+ */
+
+/*reset styles*/
+html
+{
+    font-size: 22px;
+}
+header, footer, div, h1, h2, p
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+a
+{
+    text-decoration: none;
+}
+/* body */
+body
+{
+    background-color: #116622;
+    background-image: url("img/wrapper.jpg");
+}
+/* page container */
+.container
+{
+    background-image: url("img/mmbackground.jpg");
+}
