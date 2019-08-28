@@ -32,6 +32,7 @@ function drawPlayer() {
     ctx.lineWidth = 2;
     ctx.strokeStyle = colortest;
     ctx.stroke();
+    
 }
 
 
