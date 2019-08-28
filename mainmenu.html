@@ -21,11 +21,25 @@
    <body>
   
        <div class="container">
+      
        
-        <audio src="menu.mp3" controls autoplay></audio>
+       <div id="music">
+        <audio src="menu.mp3" loop autoplay></audio>
+        </div>
+        
         
           <h1>MaKtUb</h1>
           <p><span>New Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
+          
+           <img src="mute.png" onclick="removeMusic()" id="mute"></img>
        </div>
+       
+       <script>
+       function removeMusic() {
+    var elem = document.getElementById('music');
+    elem.parentNode.removeChild(elem);
+    return false;
+}
+</script>
    </body>
 </html>
