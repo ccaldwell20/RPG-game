@@ -19,21 +19,12 @@
       <script src="menu.js"></script>
    </head>
    <body>
-  
        <div class="container">
-      
-       
-       <div id="music">
-        <audio src="menu.mp3" loop autoplay></audio>
-        </div>
-        
-        
+          <audio src="menu.mp3" loop autoplay></audio>
           <h1>MaKtUb</h1>
-          <p><span>New Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
-          
-           <img src="mute.png" onclick="removeMusic()" id="mute"></img>
+          <p><a href="thegame.html"><span>New Game</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
        </div>
-       
+        <img src="mute.png" onclick="removeMusic()" id="mute"></img>
        <script>
        function removeMusic() {
     var elem = document.getElementById('music');
