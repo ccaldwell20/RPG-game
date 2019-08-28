@@ -32,4 +32,33 @@ body
 .container
 {
     background-image: url("img/mmbackground.jpg");
+    border: solid 5px #116622;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+/* headers */
+h1
+{
+    font-size: 150px;
+    font-family: 'Cinzel Decorative', cursive;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 125px;
+}
+/* main page options*/
+p
+{
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 250px;
+    margin-bottom: 30px;
+}
+span
+{
+    border: solid 1px #FFFFFF;
+    border-radius: 75px;
+    padding: 5px;
+    background-image: url("img/buttonbackground.jpg");
 }
