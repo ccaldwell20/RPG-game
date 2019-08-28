@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="shortcut icon" href="favicon.ico" />
-
-</head>
-
-<body>
-    <a></a>
-    <div id="main">
-        <canvas id="myCanvas">
-        </canvas>
-    </div>
-    <script src="main.js"></script>
-</body>
-
+   <head>
+      <title>Main Menu</title>
+      <!--
+         RPG Game main menu
+         Filename: mainmenu,html
+         
+         Date: August 27, 2019
+         Author: Travis Andre, Colton Adkins, And Christian Cadwell
+         RPG GAME
+      -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <script src="modernizr.custom.40753.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative&display=swap" rel="stylesheet"> 
+      <link rel="stylesheet" href="menu.css">
+      <link rel="shortcut icon" href="favicon.ico" />
+      <script src="menu.js"></script>
+   </head>
+   <body>
+  
+       <div class="container">
+      
+       
+       <div id="music">
+        <audio src="menu.mp3" loop autoplay></audio>
+        </div>
+        
+        
+          <h1>MaKtUb</h1>
+          <p><span>New Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
+          
+           <img src="mute.png" onclick="removeMusic()" id="mute"></img>
+       </div>
+       
+       <script>
+       function removeMusic() {
+    var elem = document.getElementById('music');
+    elem.parentNode.removeChild(elem);
+    return false;
+}
+</script>
+   </body>
 </html>
