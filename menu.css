@@ -32,4 +32,7 @@ body
 .container
 {
     background-image: url("img/mmbackground.jpg");
+    border: solid 5px #116622;
+    width: 70%;
+    margin: 0 auto;
 }
