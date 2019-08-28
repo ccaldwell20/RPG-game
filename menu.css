@@ -60,4 +60,5 @@ span
     border: solid 1px #FFFFFF;
     border-radius: 75px;
     padding: 5px;
+    background-image: url("img/buttonbackground.jpg");
 }
