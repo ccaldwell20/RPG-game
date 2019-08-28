@@ -21,6 +21,7 @@ header, footer, div, h1, h2, p
 a
 {
     text-decoration: none;
+    color: #FFFFFF;
 }
 /* body */
 body
@@ -62,7 +63,8 @@ span
     padding: 5px;
     background-image: url("img/buttonbackground.jpg");
 }
-#mute {
+#mute 
+{
 width: 5%;
 cursor: pointer;
 }
