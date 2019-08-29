@@ -1,23 +1,5 @@
+<!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="shortcut icon" href="favicon.ico" />
-
-</head>
-
-<body>
-    <a></a>
-    <div id="main">
-        <canvas width="1920", height="1080"id="myCanvas">
-        </canvas>
-    </div>
-    <script src="main.js"></script>
-</body>
-
-=======
    <head>
       <title>Main Menu</title>
       <!--
@@ -35,29 +17,14 @@
       <link rel="stylesheet" href="menu.css">
       <link rel="shortcut icon" href="favicon.ico" />
       <script src="menu.js"></script>
+      <audio src="menu.mp3" id="music" loop autoplay></audio>
    </head>
    <body>
        <div class="container">
-       
-       
         <img src="mute.png" onclick="removeMusic()" id="mute"></img>
-          <audio src="menu.mp3" id="music" loop autoplay></audio>
-          
-          
-          
           <h1>MaKtUb</h1>
-          
-          
           <p><a href="thegame.html"><span>New Game</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
-          
        </div>
-       
-       
-       
-       
-        
-        
-        
        <script>
        function removeMusic() {
     var elem = document.getElementById('music');
@@ -65,10 +32,5 @@
     return false;
 }
 </script>
-
-
-
-
    </body>
->>>>>>> 1533a23b2c8ce5d25e99c9bfed07254bbb5c669a
 </html>
