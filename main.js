@@ -35,7 +35,7 @@ function drawPlayer() {
     var R = 15;
     ctx.beginPath();
     ctx.arc(playerX, playerY, R, 0, 2 * Math.PI);
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 30;
     ctx.strokeStyle = colortest;
     ctx.stroke();
     
