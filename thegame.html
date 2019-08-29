@@ -4,6 +4,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="shortcut icon" href="favicon.ico" />
+        <script src="main.js"></script>
 </head>
 <body>
     <a></a>
@@ -11,6 +12,25 @@
         <canvas width="1920px" height="1080px" id="myCanvas">
         </canvas>
     </div>
-    <script src="main.js"></script>
+
+    <p id="position">Test</p>
+    
+      <script>
+            
+            document.addEventListener("mousemove",function(event){
+                
+                var x = event.clientX;
+                var y = event.clientY;
+                
+                document.getElementById('position').innerHTML = " X = "+ x +"][ Y = "+ y;
+                
+            });
+            
+        </script>
+
+    </body>
+    
+    
+    
 </body>
 </html>
