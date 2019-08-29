@@ -19,6 +19,11 @@ var codeKeyDown = 83;
 var codeKeyLeft = 65;
 var codeKeyRight = 68;
 
+var codeKeyUpA = 38;
+var codeKeyDownA = 40;
+var codeKeyLeftA = 37;
+var codeKeyRightA = 39;
+
 var movementSpeed = 5;
 
 function drawPlayer() {
@@ -38,45 +43,71 @@ function drawPlayer() {
 
 
 function onkeydown(e) {
+    //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = true;
+    } else if (e.keyCode == codeKeyRightA) {
+        directionRight = true;
+    }
 
-    } //right arrow
+    
+    //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = true;
+    } else if (e.keyCode == codeKeyLeftA) {
+        directionLeft = true;
+    }
 
-    } //left arrow
-
+    
+    //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = true;
+    } else if (e.keyCode == codeKeyUpA) {
+        directionUp = true;
+    }
 
-    } //up arrow
-
+    
+    //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
         directionDown = true;
-
-    } //down arrow
+    } else if (e.keyCode == codeKeyDownA) {
+        directionDown = true;
+    }
 
 
 }
 
 function onkeyup(e) {
+    //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = false;
-
-    } //right arrow
+    } else if (e.keyCode == codeKeyRightA) {
+        directionRight = false;
+    }
+    
+    
+    //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = false;
-
-    } //left arrow
+    } else if (e.keyCode == codeKeyLeftA) {
+        directionLeft = false;
+    }
+    
+    
+    //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = false;
-
-    } //up arrow
+    } else if (e.keyCode == codeKeyUpA) {
+        directionUp = false;
+    }
+    
+    
+    //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
         directionDown = false;
-
-    } //down arrow
+    } else if (e.keyCode == codeKeyDownA) {
+        directionDown = false;
+    }
 
 }
 
