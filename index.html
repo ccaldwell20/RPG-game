@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< Updated upstream
+=======
+
+
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+    <a></a>
+    <div id="main">
+        <canvas width="1920", height="1080"id="myCanvas">
+        </canvas>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+
+>>>>>>> Stashed changes
    <head>
       <title>Main Menu</title>
       <!--
          RPG Game main menu
          Filename: mainmenu,html
-         
+        
          Date: August 27, 2019
          Author: Travis Andre, Colton Adkins, And Christian Cadwell
          RPG GAME
@@ -25,12 +47,37 @@
           <h1>MaKtUb</h1>
           <p><a href="thegame.html"><span>New Game</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Load Game</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Exit Game</span></p>
        </div>
+<<<<<<< Updated upstream
+=======
+       
+       
+       
+       <img src="img/mmbackground.jpg" id="pic"></img>
+        
+        
+        
+>>>>>>> Stashed changes
        <script>
        function removeMusic() {
     var elem = document.getElementById('music');
     elem.parentNode.removeChild(elem);
     return false;
 }
+
+
+
+
+
+window.onload = function() {
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  var img = document.getElementById("pic");
+  ctx.drawImage(img, 10, 10);
+}
 </script>
    </body>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 </html>
