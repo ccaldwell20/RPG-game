@@ -15,4 +15,7 @@ body {
     right: 0;
     border: solid red 2px;
     background: url("map.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
 }
