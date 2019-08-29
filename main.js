@@ -27,6 +27,7 @@ var codeKeyRightA = 39;
 var movementSpeed = 5;
 
 function drawPlayer() {
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
@@ -37,6 +38,9 @@ function drawPlayer() {
     ctx.lineWidth = 2;
     ctx.strokeStyle = colortest;
     ctx.stroke();
+    
+  
+
 
 }
 
@@ -164,3 +168,15 @@ window.addEventListener("keydown", onkeydown);
 window.addEventListener("keyup", onkeyup);
 setInterval(update, 16.5); // 33 milliseconds = ~ 30 frames per sec
 /////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
