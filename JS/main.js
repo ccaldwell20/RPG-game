@@ -32,10 +32,10 @@ function drawPlayer() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     console.log("Tick");
-    var R = 15;
+    var R = 6;
     ctx.beginPath();
     ctx.arc(playerX, playerY, R, 0, 2 * Math.PI);
-    ctx.lineWidth = 30;
+    ctx.lineWidth = 10;
     ctx.strokeStyle = colortest;
     ctx.stroke();
     
