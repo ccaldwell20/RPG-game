@@ -26,11 +26,84 @@ var codeKeyRightA = 39;
 
 var movementSpeed = 5;
 
+
+
+var c;
+
+
+
+var CanHeight;
+var CanWidth;
+
+
+
+
+
+
+var PicList = new Array("map"); // A "list" of PNG images to load
+
+var image;
+var ImagesLoaded = 0;
+
+
+
+function initCanvas() {
+
+    c = document.getElementById("myCanvas");
+    CanHeight = c.height;
+    CanWidth = c.width;
+
+}
+
+
+PreGame(); // NOTE: PreGame() is called AS THE PAGE LOADS
+
+
+
+function PreGame() // Do Pre_Game stuff, like preload the images needed              
+{
+    var Next = 0;
+
+    while (Next <= (PicList.length - 1)) {
+        window[PicList[Next] + 'Image'] = preLoadImage('img/' + PicList[Next] + '.jpg');
+        Next++;
+    }
+};
+
+function preLoadImage(url) // Load the image
+{
+    image = new Image();
+    image.addEventListener("load", ImageLoaded, false); // "Listen" for the image to be finished loading
+    image.src = url;
+    console.log(image);
+    return image;
+}
+
+var mymapImage;
+
+function ImageLoaded() // Test to see if all images are loaded. (You might put a progress meter in here)
+{
+    ImagesLoaded++;
+    if (ImagesLoaded == PicList.length) {
+        console.log("The images have been preloaded.");
+        image = new Image();
+        image.src = "img/map.jpg";
+        mymapImage = image;
+        console.log(mymapImage);           
+    }
+}
+
+
+
+
+
 function drawPlayer() {
+
+
     
-    var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.clearRect(0, 0,  c.width, c.height);
+    ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
     console.log("Tick");
     var R = 6;
     ctx.beginPath();
@@ -38,8 +111,8 @@ function drawPlayer() {
     ctx.lineWidth = 10;
     ctx.strokeStyle = colortest;
     ctx.stroke();
-    
-  
+
+
 
 
 }
@@ -54,7 +127,7 @@ function onkeydown(e) {
         directionRight = true;
     }
 
-    
+
     //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = true;
@@ -62,7 +135,7 @@ function onkeydown(e) {
         directionLeft = true;
     }
 
-    
+
     //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = true;
@@ -70,7 +143,7 @@ function onkeydown(e) {
         directionUp = true;
     }
 
-    
+
     //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
         directionDown = true;
@@ -88,24 +161,24 @@ function onkeyup(e) {
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = false;
     }
-    
-    
+
+
     //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = false;
     } else if (e.keyCode == codeKeyLeftA) {
         directionLeft = false;
     }
-    
-    
+
+
     //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = false;
     } else if (e.keyCode == codeKeyUpA) {
         directionUp = false;
     }
-    
-    
+
+
     //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
         directionDown = false;
@@ -137,17 +210,6 @@ function playerMovement() {
 
 
 
-//LOAD IMAGE
-//function loadBackgroundImg() {
-//    var img = new Image();
-//    img.src = "https://dummyimage.com/1920x1080/999/fff.jpg";
-//    var canvas = document.getElementById("myCanvas");
-//    var ctx = canvas.getContext("2d");
-//    ctx.drawImage(img, 10, 10);
-//}
-//loadBackgroundImg();
-
-
 
 
 
@@ -168,15 +230,3 @@ window.addEventListener("keydown", onkeydown);
 window.addEventListener("keyup", onkeyup);
 setInterval(update, 16.5); // 33 milliseconds = ~ 30 frames per sec
 /////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
