@@ -66,7 +66,6 @@ function preLoadImage(url) // Load the image
     image = new Image();
     image.addEventListener("load", ImageLoaded, false); // "Listen" for the image to be finished loading
     image.src = url;
-    image.crossOrigin = "anonymous";
     console.log(image);
     return image;
 }
