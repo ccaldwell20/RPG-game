@@ -23,22 +23,12 @@ var codeKeyUpA = 38;
 var codeKeyDownA = 40;
 var codeKeyLeftA = 37;
 var codeKeyRightA = 39;
-
 var movementSpeed = 5;
 
-
-
 var c;
-
-
-
+var ctx;
 var CanHeight;
 var CanWidth;
-
-
-
-
-
 
 var PicList = new Array("map"); // A "list" of PNG images to load
 
@@ -52,6 +42,7 @@ function initCanvas() {
     c = document.getElementById("myCanvas");
     CanHeight = c.height;
     CanWidth = c.width;
+
 
 }
 
@@ -89,28 +80,35 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
         image = new Image();
         image.src = "img/map.jpg";
         mymapImage = image;
-        console.log(mymapImage);           
+        console.log(mymapImage);
     }
 }
 
 
 
+function getPixel(url, x, y) {
+    return ctx.getImageData(x, y, 1, 1).data;
+}
 
+function showColor() {
+    document.getElementById('position').innerHTML = "RGBA values: { "+getPixel('./bg.png', playerX, playerY)+" }";
+}
 
 function drawPlayer() {
 
 
-    
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0,  c.width, c.height);
+
+    ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
-    console.log("Tick");
     var R = 6;
     ctx.beginPath();
     ctx.arc(playerX, playerY, R, 0, 2 * Math.PI);
     ctx.lineWidth = 10;
     ctx.strokeStyle = colortest;
     ctx.stroke();
+    showColor();
+    //console.log(getPixel('./bg.png', playerX, playerY)); // [255, 255, 255, 0];
 
 
 
@@ -220,9 +218,6 @@ function update() {
     drawPlayer();
     playerMovement();
 }
-
-
-
 
 
 /////////////////////////////////////////////////////////////////
