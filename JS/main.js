@@ -107,8 +107,8 @@ function drawPlayer() {
     ctx.lineWidth = 10;
     ctx.strokeStyle = colortest;
     ctx.stroke();
-    showColor();
-    //console.log(getPixel('./bg.png', playerX, playerY)); // [255, 255, 255, 0];
+    //showColor();
+    console.log(getPixel('./bg.png', playerX, playerY)); // [255, 255, 255, 0];
 
 
 
