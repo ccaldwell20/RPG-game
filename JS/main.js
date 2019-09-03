@@ -1,8 +1,10 @@
 var R = 1; //RADIUS OF PLAYER TEST CIRCLE
 
 var colortest = '#FF0000'
-var playerX = 0;
-var playerY = 0;
+var playerX = 915;
+var playerY = 525;
+var playerXorigin = 915;
+var playerYorigin = 525;
 var directionRight;
 var directionLeft;
 var directionUp;
@@ -101,42 +103,83 @@ function getPixel(url, x, y, colorv) {
 }
 
 function inRange(x, min, max) {
-    return ((x-min)*(x-max) <= 0);
+    return ((x - min) * (x - max) <= 0);
 }
+
+var bound = 0;
 
 function checkMapColorValue(area) {
     var area = area;
-    if(area == "test"){
-    if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255)&&
-        inRange(getPixel('./bg.png', playerX, playerY, "green"), 88, 94) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 3) == true) {
-        
-        console.log("ORANGE");
-        
+    if (area == "test") {
 
-    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255)&&
-        inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 3) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 185, 193) == true) {
-        
-        console.log("VIOLET");
-        
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 88, 94) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 3) == true) {
 
-    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 109, 115) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "green"), 188, 194) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 6) == true) {
-        
-        console.log("LIME-GREEN");
-        movementSpeed = 10;
-        
-        
+            console.log("ORANGE");
 
-    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 62, 68) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "green"), 28, 34) &&
-        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 188, 194) == true) {
-        console.log("BLUE");
 
+        }
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 3) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 185, 193) == true) {
+
+            console.log("VIOLET");
+
+
+        }
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 109, 115) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 188, 194) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 6) == true) {
+
+            console.log("LIME-GREEN");
+            movementSpeed = 10;
+
+
+
+        }
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 62, 68) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 28, 34) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 188, 194) == true) {
+            console.log("BLUE");
+
+        }
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 0, 0) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 0) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 0) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "trans"), 0, 0) == true) {
+            console.log("BOUND");
+            bound += 1
+            
+            if (directionRight == true) {
+                playerX -= 30;
+                bound = 0;
+            }
+
+            if (directionLeft == true) {
+                playerX += 30;
+                bound = 0;
+            }
+
+            if (directionUp == true) {
+                playerY += 30;
+                bound = 0;
+            }
+
+            if (directionDown == true) {
+                playerY -= 30;
+                bound = 0;
+            }
+            
+            if (bound >= 50){
+                
+                playerX = playerXorigin;
+                playerY = playerYorigin;
+                
+            }
+
+        }
     }
-}
 
 }
 
@@ -159,7 +202,7 @@ function drawPlayer() {
     ctx.stroke();
     showColor();
     checkMapColorValue("test");
-    console.log(getPixel('./bg.png', playerX, playerY,"red")); // [255, 255, 255, 0];
+    //console.log(getPixel('./bg.png', playerX, playerY,"red")); // [255, 255, 255, 0];
 
 
 
