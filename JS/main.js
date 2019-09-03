@@ -86,12 +86,57 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
 
 
 
-function getPixel(url, x, y) {
-    return ctx.getImageData(x, y, 1, 1).data;
+function getPixel(url, x, y, colorv) {
+    if (colorv == "red") {
+        return ctx.getImageData(x, y, 1, 1).data[0];
+    } else if (colorv == "green") {
+        return ctx.getImageData(x, y, 1, 1).data[1];
+    } else if (colorv == "blue") {
+        return ctx.getImageData(x, y, 1, 1).data[2];
+    } else if (colorv == "trans") {
+        return ctx.getImageData(x, y, 1, 1).data[3];
+    } else if (colorv == "all") {
+        return ctx.getImageData(x, y, 1, 1).data;
+    }
+}
+
+function checkMapColorValue(area) {
+    var area = area;
+    if(area == "test"){
+    if (getPixel('./bg.png', playerX, playerY, "red") == 255 &&
+        getPixel('./bg.png', playerX, playerY, "green") == 91 &&
+        getPixel('./bg.png', playerX, playerY, "blue") == 0) {
+        
+        console.log("ORANGE");
+        
+
+    } else if (getPixel('./bg.png', playerX, playerY, "red") == 255 &&
+        getPixel('./bg.png', playerX, playerY, "green") == 0 &&
+        getPixel('./bg.png', playerX, playerY, "blue") == 189) {
+        
+        console.log("VIOLET");
+        
+
+    } else if (getPixel('./bg.png', playerX, playerY, "red") == 112 &&
+        getPixel('./bg.png', playerX, playerY, "green") == 191 &&
+        getPixel('./bg.png', playerX, playerY, "blue") == 3) {
+        
+        console.log("LIME-GREEN");
+        
+
+    } else if (getPixel('./bg.png', playerX, playerY, "red") == 65 &&
+        getPixel('./bg.png', playerX, playerY, "green") == 31 &&
+        getPixel('./bg.png', playerX, playerY, "blue") == 191) {
+        
+        console.log("BLUE");
+
+    }
+}
+
 }
 
 function showColor() {
-    document.getElementById('position').innerHTML = "RGBA values: { "+getPixel('./bg.png', playerX, playerY)+" }";
+    document.getElementById('position').innerHTML = "RGBA values: { " + getPixel('./bg.png', playerX, playerY, "all") + " }";
 }
 
 function drawPlayer() {
@@ -108,7 +153,8 @@ function drawPlayer() {
     ctx.strokeStyle = colortest;
     ctx.stroke();
     showColor();
-    //console.log(getPixel('./bg.png', playerX, playerY)); // [255, 255, 255, 0];
+    checkMapColorValue("test");
+    console.log(getPixel('./bg.png', playerX, playerY,"red")); // [255, 255, 255, 0];
 
 
 
