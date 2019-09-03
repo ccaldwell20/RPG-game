@@ -100,12 +100,16 @@ function getPixel(url, x, y, colorv) {
     }
 }
 
+function inRange(x, min, max) {
+    return ((x-min)*(x-max) <= 0);
+}
+
 function checkMapColorValue(area) {
     var area = area;
     if(area == "test"){
-    if (getPixel('./bg.png', playerX, playerY, "red") == 255 &&
-        getPixel('./bg.png', playerX, playerY, "green") == 91 &&
-        getPixel('./bg.png', playerX, playerY, "blue") == 0) {
+    if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255)&&
+        inRange(getPixel('./bg.png', playerX, playerY, "green"), 88, 94) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 3) == true) {
         
         console.log("ORANGE");
         
