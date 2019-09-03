@@ -114,24 +114,25 @@ function checkMapColorValue(area) {
         console.log("ORANGE");
         
 
-    } else if (getPixel('./bg.png', playerX, playerY, "red") == 255 &&
-        getPixel('./bg.png', playerX, playerY, "green") == 0 &&
-        getPixel('./bg.png', playerX, playerY, "blue") == 189) {
+    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255)&&
+        inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 3) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 185, 193) == true) {
         
         console.log("VIOLET");
         
 
-    } else if (getPixel('./bg.png', playerX, playerY, "red") == 112 &&
-        getPixel('./bg.png', playerX, playerY, "green") == 191 &&
-        getPixel('./bg.png', playerX, playerY, "blue") == 3) {
+    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 109, 115) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "green"), 188, 194) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 6) == true) {
         
         console.log("LIME-GREEN");
+        movementSpeed = 10;
+        
         
 
-    } else if (getPixel('./bg.png', playerX, playerY, "red") == 65 &&
-        getPixel('./bg.png', playerX, playerY, "green") == 31 &&
-        getPixel('./bg.png', playerX, playerY, "blue") == 191) {
-        
+    } else if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 62, 68) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "green"), 28, 34) &&
+        inRange(getPixel('./bg.png', playerX, playerY, "blue"), 188, 194) == true) {
         console.log("BLUE");
 
     }
