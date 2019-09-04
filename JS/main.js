@@ -32,6 +32,11 @@ var ctx;
 var CanHeight;
 var CanWidth;
 
+var cTwo;
+var ctxTwo;
+var CanHeightTwo;
+var CanWidthTwo;
+
 var PicList = new Array("map"); // A "list" of PNG images to load
 
 var image;
@@ -44,6 +49,10 @@ function initCanvas() {
     c = document.getElementById("myCanvas");
     CanHeight = c.height;
     CanWidth = c.width;
+    
+    cTwo = document.getElementById("myCanvasTwo");
+    CanHeightTwo = cTwo.height;
+    CanWidthTwo = cTwo.width;
 
 
 }
@@ -73,16 +82,22 @@ function preLoadImage(url) // Load the image
 }
 
 var mymapImage;
+var mycollisionmapImage;
 
 function ImageLoaded() // Test to see if all images are loaded. (You might put a progress meter in here)
 {
     ImagesLoaded++;
     if (ImagesLoaded == PicList.length) {
         console.log("The images have been preloaded.");
+        
         image = new Image();
         image.src = "img/map.jpg";
         mymapImage = image;
-        console.log(mymapImage);
+        
+        image2 = new Image();
+        image2.src = "img/collision_map.jpg";
+        mycollisionmapImage = image2;
+        console.log(mycollisionmapImage);
     }
 }
 
@@ -90,15 +105,15 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
 
 function getPixel(url, x, y, colorv) {
     if (colorv == "red") {
-        return ctx.getImageData(x, y, 1, 1).data[0];
+        return ctxTwo.getImageData(x, y, 1, 1).data[0];
     } else if (colorv == "green") {
-        return ctx.getImageData(x, y, 1, 1).data[1];
+        return ctxTwo.getImageData(x, y, 1, 1).data[1];
     } else if (colorv == "blue") {
-        return ctx.getImageData(x, y, 1, 1).data[2];
+        return ctxTwo.getImageData(x, y, 1, 1).data[2];
     } else if (colorv == "trans") {
-        return ctx.getImageData(x, y, 1, 1).data[3];
+        return ctxTwo.getImageData(x, y, 1, 1).data[3];
     } else if (colorv == "all") {
-        return ctx.getImageData(x, y, 1, 1).data;
+        return ctxTwo.getImageData(x, y, 1, 1).data;
     }
 }
 
@@ -194,6 +209,13 @@ function drawPlayer() {
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
+    
+    
+    ctxTwo = cTwo.getContext("2d");
+    ctxTwo.clearRect(0, 0, cTwo.width, cTwo.height);
+    ctxTwo.drawImage(mycollisionmapImage, 0, 0, cTwo.width, cTwo.height);
+    
+    
     var R = 6;
     ctx.beginPath();
     ctx.arc(playerX, playerY, R, 0, 2 * Math.PI);

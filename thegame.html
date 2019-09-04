@@ -9,8 +9,25 @@
 <body onload="initCanvas();">
     <a></a>
     <div id="main">
+        
+<!--
+        
+        This canvas is used for color-tracking
+        Do not touch!
+-->
+        
+        <canvas width="1920px" height="1080px" id="myCanvasTwo">
+        </canvas>
+        
+<!--  
+        This is the main game canvas,
+        all player movements take place in this area.
+        The map is also overlayed in this area.
+-->
         <canvas width="1920px" height="1080px" id="myCanvas">
         </canvas>
+        
+        
     </div>
 
     <p id="position">Test</p>
