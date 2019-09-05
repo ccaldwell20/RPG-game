@@ -94,10 +94,29 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
         image.src = "img/map.jpg";
         mymapImage = image;
         
+        
         image2 = new Image();
         image2.src = "img/collision_map.jpg";
         mycollisionmapImage = image2;
         console.log(mycollisionmapImage);
+        
+        //Left
+                image3 = new Image();
+        image3.src = "img/spriteL.png";
+        myspriteLImage = image3;
+        console.log(myspriteLImage);
+        
+        //Right
+           image4 = new Image();
+        image4.src = "img/spriteR.png";
+        myspriteRImage = image4;
+        console.log(myspriteRImage);
+        
+        //Stationary
+          image5 = new Image();
+        image5.src = "img/spriteS.png";
+        myspriteSImage = image5;
+        console.log(myspriteSImage);
     }
 }
 
@@ -216,17 +235,12 @@ function drawPlayer() {
     ctxTwo.drawImage(mycollisionmapImage, 0, 0, cTwo.width, cTwo.height);
     
     
-    var R = 6;
     ctx.beginPath();
-    ctx.arc(playerX, playerY, R, 0, 2 * Math.PI);
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = colortest;
+    ctx.drawImage(myspriteSImage, playerX, playerY);
     ctx.stroke();
     showColor();
     checkMapColorValue("test");
     //console.log(getPixel('./bg.png', playerX, playerY,"red")); // [255, 255, 255, 0];
-
-
 
 
 }
@@ -272,6 +286,7 @@ function onkeyup(e) {
     //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = false;
+         myspriteSImage .src = "img/spriteR.png";
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = false;
     }
@@ -306,18 +321,23 @@ function playerMovement() {
 
     if (directionRight == true) {
         playerX += movementSpeed;
+        myspriteSImage .src = "img/spriteR.png";
+        
     }
 
     if (directionLeft == true) {
         playerX -= movementSpeed;
+          myspriteSImage .src = "img/spriteL.png";
     }
 
     if (directionUp == true) {
         playerY -= movementSpeed;
+          myspriteSImage .src = "img/spriteU.png";
     }
 
     if (directionDown == true) {
         playerY += movementSpeed;
+          myspriteSImage .src = "img/spriteD.png";
     }
 
 }
