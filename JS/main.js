@@ -96,7 +96,7 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
         
         
         image2 = new Image();
-        image2.src = "img/collision_map.jpg";
+        image2.src = "img/collision_map_1.jpg";
         mycollisionmapImage = image2;
         console.log(mycollisionmapImage);
         
@@ -147,7 +147,7 @@ function checkMapColorValue(area) {
     if (area == "test") {
 
         if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 250, 255) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "green"), 88, 94) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 118, 124) &&
             inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 3) == true) {
 
             console.log("ORANGE");
