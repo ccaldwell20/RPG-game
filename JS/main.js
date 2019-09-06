@@ -25,7 +25,7 @@ var codeKeyUpA = 38;
 var codeKeyDownA = 40;
 var codeKeyLeftA = 37;
 var codeKeyRightA = 39;
-var movementSpeed = 5;
+var movementSpeed = 2;
 
 var c;
 var ctx;
@@ -167,7 +167,6 @@ function checkMapColorValue(area) {
             inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 6) == true) {
 
             console.log("LIME-GREEN");
-            movementSpeed = 10;
 
 
 
