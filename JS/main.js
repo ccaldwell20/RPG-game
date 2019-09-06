@@ -25,7 +25,7 @@ var codeKeyUpA = 38;
 var codeKeyDownA = 40;
 var codeKeyLeftA = 37;
 var codeKeyRightA = 39;
-var movementSpeed = 2;
+var movementSpeed = 5;
 
 var c;
 var ctx;
@@ -49,7 +49,7 @@ function initCanvas() {
     c = document.getElementById("myCanvas");
     CanHeight = c.height;
     CanWidth = c.width;
-    
+
     cTwo = document.getElementById("myCanvasTwo");
     CanHeightTwo = cTwo.height;
     CanWidthTwo = cTwo.width;
@@ -89,31 +89,31 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
     ImagesLoaded++;
     if (ImagesLoaded == PicList.length) {
         console.log("The images have been preloaded.");
-        
+
         image = new Image();
         image.src = "img/map.jpg";
         mymapImage = image;
-        
-        
+
+
         image2 = new Image();
         image2.src = "img/collision_map_1.jpg";
         mycollisionmapImage = image2;
         console.log(mycollisionmapImage);
-        
+
         //Left
-                image3 = new Image();
+        image3 = new Image();
         image3.src = "img/spriteL.png";
         myspriteLImage = image3;
         console.log(myspriteLImage);
-        
+
         //Right
-           image4 = new Image();
+        image4 = new Image();
         image4.src = "img/spriteR.png";
         myspriteRImage = image4;
         console.log(myspriteRImage);
-        
+
         //Stationary
-          image5 = new Image();
+        image5 = new Image();
         image5.src = "img/spriteS.png";
         myspriteSImage = image5;
         console.log(myspriteSImage);
@@ -138,6 +138,70 @@ function getPixel(url, x, y, colorv) {
 
 function inRange(x, min, max) {
     return ((x - min) * (x - max) <= 0);
+}
+
+var xPos;
+var yPos;
+
+function checkBounds(direction) {
+
+    if (direction == "up") {
+        xPos = playerX;
+        yPos = playerY;
+
+        if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "blue"), 249, 255) == true) {
+            console.log("BOUND");
+            playerY += movementSpeed;
+        }
+        if(inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "blue"), 249, 255) == true){
+           
+           }
+    }
+
+    if (direction == "down") {
+        xPos = playerX;
+        yPos = playerY + 30;
+
+        if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "blue"), 249, 255) == true) {
+            console.log("BOUND");
+            playerY -= movementSpeed;
+        }
+    }
+
+    if (direction == "left") {
+        xPos = playerX;
+        yPos = playerY;
+
+        if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) || inRange(getPixel('./bg.png', xPos, yPos+30, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) || inRange(getPixel('./bg.png', xPos, yPos+30, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "blue"), 249, 255) || inRange(getPixel('./bg.png', xPos, yPos+30, "blue"), 249, 255) == true) {
+            console.log("BOUND");
+            playerX += movementSpeed;
+        }
+        
+
+    }
+    if (direction == "right") {
+        xPos = playerX+30;
+        yPos = playerY;
+
+        if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) || inRange(getPixel('./bg.png', xPos, yPos+30, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) || inRange(getPixel('./bg.png', xPos, yPos+30, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', xPos, yPos, "blue"), 249, 255) || inRange(getPixel('./bg.png', xPos, yPos+30, "blue"), 249, 255) == true) {
+            console.log("BOUND");
+            playerX -= movementSpeed;
+        }
+
+
+    }
+
+
 }
 
 var bound = 0;
@@ -177,40 +241,8 @@ function checkMapColorValue(area) {
             console.log("BLUE");
 
         }
-        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 228, 238) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 4) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 249, 255) == true) {
-            console.log("BOUND");
-            bound += 1
-            
-            if (directionRight == true) {
-                playerX -= movementSpeed+9;
-                bound = 0;
-            }
 
-            if (directionLeft == true) {
-                playerX += movementSpeed+9;
-                bound = 0;
-            }
 
-            if (directionUp == true) {
-                playerY += movementSpeed+9;
-                bound = 0;
-            }
-
-            if (directionDown == true) {
-                playerY -= movementSpeed+9;
-                bound = 0;
-            }
-            
-            if (bound >= 20){
-                
-                playerX = playerXorigin;
-                playerY = playerYorigin;
-                
-            }
-
-        }
     }
 
 }
@@ -226,14 +258,14 @@ function drawPlayer() {
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
-    ctx.globalAlpha=1;
-    
-    
+    ctx.globalAlpha = 0.7;
+
+
     ctxTwo = cTwo.getContext("2d");
     ctxTwo.clearRect(0, 0, cTwo.width, cTwo.height);
     ctxTwo.drawImage(mycollisionmapImage, 0, 0, cTwo.width, cTwo.height);
-    
-    
+
+
     ctx.beginPath();
     ctx.drawImage(myspriteSImage, playerX, playerY);
     ctx.stroke();
@@ -285,7 +317,7 @@ function onkeyup(e) {
     //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = false;
-         myspriteSImage .src = "img/spriteR.png";
+        myspriteSImage.src = "img/spriteR.png";
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = false;
     }
@@ -320,23 +352,27 @@ function playerMovement() {
 
     if (directionRight == true) {
         playerX += movementSpeed;
-        myspriteSImage .src = "img/spriteR.png";
-        
+        myspriteSImage.src = "img/spriteR.png";
+        checkBounds("right");
+
     }
 
     if (directionLeft == true) {
         playerX -= movementSpeed;
-          myspriteSImage .src = "img/spriteL.png";
+        myspriteSImage.src = "img/spriteL.png";
+        checkBounds("left");
     }
 
     if (directionUp == true) {
         playerY -= movementSpeed;
-          myspriteSImage .src = "img/spriteU.png";
+        myspriteSImage.src = "img/spriteU.png";
+        checkBounds("up");
     }
 
     if (directionDown == true) {
         playerY += movementSpeed;
-          myspriteSImage .src = "img/spriteD.png";
+        myspriteSImage.src = "img/spriteD.png";
+        checkBounds("down");
     }
 
 }
