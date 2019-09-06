@@ -4,7 +4,7 @@ var colortest = '#FF0000'
 var playerX = 915;
 var playerY = 525;
 var playerXorigin = 915;
-var playerYorigin = 525;
+var playerYorigin = 445;
 var directionRight;
 var directionLeft;
 var directionUp;
@@ -177,30 +177,29 @@ function checkMapColorValue(area) {
             console.log("BLUE");
 
         }
-        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 0, 0) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 0) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 0, 0) &&
-            inRange(getPixel('./bg.png', playerX, playerY, "trans"), 0, 0) == true) {
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 228, 238) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 0, 4) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 249, 255) == true) {
             console.log("BOUND");
             bound += 1
             
             if (directionRight == true) {
-                playerX -= 30;
+                playerX -= movementSpeed+9;
                 bound = 0;
             }
 
             if (directionLeft == true) {
-                playerX += 30;
+                playerX += movementSpeed+9;
                 bound = 0;
             }
 
             if (directionUp == true) {
-                playerY += 30;
+                playerY += movementSpeed+9;
                 bound = 0;
             }
 
             if (directionDown == true) {
-                playerY -= 30;
+                playerY -= movementSpeed+9;
                 bound = 0;
             }
             
@@ -227,6 +226,7 @@ function drawPlayer() {
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
+    ctx.globalAlpha=1;
     
     
     ctxTwo = cTwo.getContext("2d");
