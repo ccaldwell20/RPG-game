@@ -205,7 +205,7 @@ function checkMapColorValue(area) {
                 bound = 0;
             }
             
-            if (bound >= 50){
+            if (bound >= 20){
                 
                 playerX = playerXorigin;
                 playerY = playerYorigin;
