@@ -40,11 +40,17 @@
          }
          function pauseFunctionLoad() {
             document.getElementById("Pause_Container").style.display="block";
+            document.getElementById("myCanvas").style.display="none";
+             document.getElementById("myCanvasTwo").style.display="none";
+               document.getElementById("position").style.display="none";
             console.log("Pause");
             track = true;
          }
          function pauseFunctionUnload() {
             document.getElementById("Pause_Container").style.display="none";
+             document.getElementById("myCanvas").style.display="block";
+                          document.getElementById("myCanvasTwo").style.display="block";
+                             document.getElementById("position").style.display="block";
             console.log("Un-Pause");
             track=false;
          }

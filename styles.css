@@ -52,7 +52,7 @@ color: white;
 /*Pause Menu Styles*/
 #Pause_Button
 {
-    font-size: 14px;
+    font-size: 1.5vw;
     position: relative;
     float: right;
     cursor: pointer;
@@ -70,7 +70,7 @@ color: white;
     margin-top: 50px;
     color: #FFFFFF;
     text-align: center;
-    font-size: 50px;
+    font-size: 2.3vw;
     font-family: 'Cinzel Decorative', cursive;
     clear: both;
 }
