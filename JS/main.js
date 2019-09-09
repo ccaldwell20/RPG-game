@@ -282,6 +282,7 @@ function onkeydown(e) {
     //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = true;
+          document.getElementById('myWalking').play();
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = true;
     }
@@ -290,6 +291,7 @@ function onkeydown(e) {
     //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = true;
+          document.getElementById('myWalking').play();
     } else if (e.keyCode == codeKeyLeftA) {
         directionLeft = true;
     }
@@ -298,6 +300,7 @@ function onkeydown(e) {
     //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = true;
+          document.getElementById('myWalking').play();
     } else if (e.keyCode == codeKeyUpA) {
         directionUp = true;
     }
@@ -305,6 +308,7 @@ function onkeydown(e) {
 
     //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
+          document.getElementById('myWalking').play();
         directionDown = true;
     } else if (e.keyCode == codeKeyDownA) {
         directionDown = true;
@@ -317,6 +321,7 @@ function onkeyup(e) {
     //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = false;
+          document.getElementById('myWalking').pause();
         myspriteSImage.src = "img/spriteR.png";
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = false;
@@ -326,6 +331,7 @@ function onkeyup(e) {
     //LEFT ARROW
     if (e.keyCode == codeKeyLeft) {
         directionLeft = false;
+            document.getElementById('myWalking').pause();
     } else if (e.keyCode == codeKeyLeftA) {
         directionLeft = false;
     }
@@ -334,6 +340,7 @@ function onkeyup(e) {
     //UP ARROW
     if (e.keyCode == codeKeyUp) {
         directionUp = false;
+            document.getElementById('myWalking').pause();
     } else if (e.keyCode == codeKeyUpA) {
         directionUp = false;
     }
@@ -342,6 +349,7 @@ function onkeyup(e) {
     //DOWN ARROW
     if (e.keyCode == codeKeyDown) {
         directionDown = false;
+            document.getElementById('myWalking').pause();
     } else if (e.keyCode == codeKeyDownA) {
         directionDown = false;
     }
