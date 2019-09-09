@@ -27,7 +27,44 @@
         <canvas width="1920px" height="1080px" id="myCanvas">
         </canvas>
         
+        <!--Pause Menu Javascript-->
+        <script>
+         var track = false;
+         function pause() {
+            if(track == false){
+                pauseFunctionLoad();
+            }else if(track == true){
+                pauseFunctionUnload();
+            }
+         }
+         function pauseFunctionLoad() {
+            document.getElementById("Pause_Container").style.display="block";
+            console.log("Pause");
+            track = true;
+         }
+         function pauseFunctionUnload() {
+            document.getElementById("Pause_Container").style.display="none";
+            console.log("Un-Pause");
+            track=false;
+         }
+      </script>
         
+        <!--Pause Menu Start-->
+        <button id="Pause_Button" onclick="pause();">&#10073;&nbsp;&#10073;</button>
+        <div id="Pause_Container">
+        <h1>paused</h1>
+        <p class="Pause_Selection" onclick="pauseFunctionUnload();">
+           Resume
+        </p>
+        <br>
+        <p class="Pause_Selection">
+          Settings
+        </p>
+        <br>
+        <a href="index.html"><p class="Pause_Selection">
+          Exit to Menu
+        </p></a>
+        <!--Pause Menu Stop-->     
     </div>
 
     <p id="position">Test</p>
