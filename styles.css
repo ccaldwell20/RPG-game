@@ -1,3 +1,7 @@
+a
+{
+    text-decoration: none;
+}
 body {
   background-color: #000000;
   /*Temporary backroung color*/
@@ -43,7 +47,6 @@ body {
 }
 #position {
 color: white;
-float: left;
 }
 
 /*Pause Menu Styles*/
