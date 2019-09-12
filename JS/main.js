@@ -258,7 +258,7 @@ function drawPlayer() {
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
-    ctx.globalAlpha = 0.7;
+    ctx.globalAlpha = 1;
 
 
     ctxTwo = cTwo.getContext("2d");
