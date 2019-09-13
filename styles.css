@@ -1,11 +1,12 @@
-a
-{
+a {
     text-decoration: none;
 }
+
 body {
-  background-color: #000000;
-  /*Temporary backroung color*/
+    background-color: #000000;
+    /*Temporary backroung color*/
 }
+
 #myCanvas {
     padding: 0;
     margin: auto;
@@ -18,7 +19,7 @@ body {
     left: 0;
     right: 0;
     border: solid red 2px;
-/*
+    /*
     background: url("img/map.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -38,29 +39,40 @@ body {
     left: 0;
     right: 0;
     border: solid red 2px;
-/*
+    /*
     background: url("img/map.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 */
 
 }
+
 #position {
-color: white;
+    color: white;
+    margin: 0px auto;
+    padding-right: 4%;
+    text-align: center;
+    display: inline-block;
+}
+
+#positionXY {
+    color: white;
+    margin: 0px auto;
+    text-align: center;
+    display: inline-block;
 }
 
 /*Pause Menu Styles*/
-#Pause_Button
-{
+#Pause_Button {
     font-size: 1.5vw;
     position: relative;
     float: right;
     cursor: pointer;
     margin-top: 10px;
 }
+
 /* Pause Menu Box */
-#Pause_Container
-{
+#Pause_Container {
     display: none;
     border: solid 5px #116622;
     background-image: url("img/wrapper.jpg");
@@ -74,8 +86,8 @@ color: white;
     font-family: 'Cinzel Decorative', cursive;
     clear: both;
 }
-.Pause_Selection
-{
+
+.Pause_Selection {
     background-color: #116622;
     border: solid 3px #116622;
     color: #FFFFFF;
@@ -86,4 +98,3 @@ color: white;
     text-align: center;
     cursor: pointer;
 }
-
