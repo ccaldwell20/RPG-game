@@ -2,7 +2,7 @@ var R = 1; //RADIUS OF PLAYER TEST CIRCLE
 
 var colortest = '#FF0000'
 var playerX = 915;
-var playerY = 525;
+var playerY = 300;
 var playerXorigin = 915;
 var playerYorigin = 445;
 var directionRight;
@@ -32,6 +32,7 @@ var c;
 var ctx;
 var CanHeight;
 var CanWidth;
+var mapOpacity = 1;
 
 var cTwo;
 var ctxTwo;
@@ -114,6 +115,14 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
         area1and1Image = new Image();
         area1and1Image.src = "img/Area-1.1-store.jpg";
         console.log(area1and1Image);
+
+        area2CollisionImage = new Image();
+        area2CollisionImage.src = "img/Area-2_collision.jpg";
+        console.log(area2CollisionImage);
+        
+        area2Image = new Image();
+        area2Image.src = "img/Area-2.jpg";
+        console.log(area2Image);
 
         area1and1CollisionImage = new Image();
         area1and1CollisionImage.src = "img/Area-1.1-store_collision.jpg";
@@ -231,6 +240,7 @@ function loadArea(newArea) {
     if (newArea == 1) {
         mycollisionmapImage = image2;
         mymapImage = image;
+        currentArea = 1;
 
     } else if (newArea == 1.1) {
         mycollisionmapImage = area1and1CollisionImage;
@@ -238,6 +248,16 @@ function loadArea(newArea) {
         mymapImage = area1and1Image;
         playerX = 905;
         playerY = 950;
+        currentArea = 1.1;
+
+    }
+    else if (newArea == 2) {
+        mycollisionmapImage = area2CollisionImage;
+        //mycollisionmapImage = testCollisionImage;
+        mymapImage = area2Image;
+        currentArea = 2;
+        playerX = 1795;
+        playerY = 1015;
 
     }
 
@@ -291,6 +311,15 @@ function warp(lastpositionarea) {
         }
 
     }
+    
+        if (currentZone == 2) {
+            if (lastpositionarea == 1)
+                {
+                    console.log("Last area was area-1");
+                }
+            
+
+    }
 }
 
 var currentArea = 1;
@@ -301,6 +330,7 @@ function checkMapColorValue() {
     ///--------------------------
     ///Area-1: main area         
     ///Area-1.1: main area - store
+    ///Area-2: main area 2
 
     if (currentArea == 1) {
         //Store Door
@@ -312,6 +342,18 @@ function checkMapColorValue() {
 
             currentArea = 1.1;
             loadArea(1.1);
+
+        }
+
+        //Tunnel to 2nd area
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 0, 5) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 130, 141) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 110, 120) && playerCollisions == true) {
+
+            console.log("------LOADING area 2------");
+
+            currentArea = 2;
+            loadArea(2);
 
         }
     }
@@ -343,6 +385,26 @@ function checkMapColorValue() {
 
     }
 
+    if (currentArea == 2) {
+
+        //Area 2 Tunnel to Area-1
+        if (inRange(getPixel('./bg.png', playerX, playerY, "red"), 39, 46) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "green"), 91, 99) &&
+            inRange(getPixel('./bg.png', playerX, playerY, "blue"), 45, 54) && playerCollisions == true) {
+
+            console.log("------LOADING area 1------");
+
+            currentArea = 1;
+            loadArea(1);
+            warp(1.3);
+
+        }
+
+
+
+
+    }
+
 
 
 }
@@ -360,7 +422,7 @@ function drawPlayer() {
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
-    ctx.globalAlpha = 1;
+    ctx.globalAlpha = mapOpacity;
 
 
     ctxTwo = cTwo.getContext("2d");
