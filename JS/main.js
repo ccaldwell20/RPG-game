@@ -39,7 +39,9 @@ var ctxTwo;
 var CanHeightTwo;
 var CanWidthTwo;
 
-var PicList = new Array("map"); // A "list" of PNG images to load
+var PicList = new Array("mapImage", "collision_map_OneImage","Area-OneandOne-storeImage","Area-Two_collisionImage","Area-TwoImage","Area-OneandOne-store_collisionImage"); // A "list" of JPG images to load
+
+var PicListPng = new Array("spriteEnemyOneImage", "spriteLImage","spriteRImage","spriteSImage"); // A "list" of PNG images to load
 
 var image;
 var ImagesLoaded = 0;
@@ -78,6 +80,13 @@ function PreGame() // Do Pre_Game stuff, like preload the images needed
         window[PicList[Next] + 'Image'] = preLoadImage('img/' + PicList[Next] + '.jpg');
         Next++;
     }
+    
+    var NextTwo = 0;
+
+    while (NextTwo <= (PicListPng.length - 1)) {
+        window[PicListPng[NextTwo] + 'Image'] = preLoadImage('img/' + PicListPng[NextTwo] + '.png');
+        NextTwo++;
+    }
 };
 
 function preLoadImage(url) // Load the image
@@ -89,8 +98,6 @@ function preLoadImage(url) // Load the image
     return image;
 }
 
-var mymapImage;
-var mycollisionmapImage;
 
 function ImageLoaded() // Test to see if all images are loaded. (You might put a progress meter in here)
 {
@@ -98,56 +105,11 @@ function ImageLoaded() // Test to see if all images are loaded. (You might put a
     if (ImagesLoaded == PicList.length) {
         console.log("The images have been preloaded.");
 
-        image = new Image();
-        image.src = "img/map.jpg";
-        mymapImage = image;
-
-        testCollisionImage = new Image();
-        testCollisionImage.src = "img/testCollisionMap.jpg";
-        console.log(testCollisionImage);
-
-
-        image2 = new Image();
-        image2.src = "img/collision_map_1.jpg";
-        mycollisionmapImage = image2;
-        console.log(mycollisionmapImage);
-
-        area1and1Image = new Image();
-        area1and1Image.src = "img/Area-1.1-store.jpg";
-        console.log(area1and1Image);
-
-        area2CollisionImage = new Image();
-        area2CollisionImage.src = "img/Area-2_collision.jpg";
-        console.log(area2CollisionImage);
-        
-        area2Image = new Image();
-        area2Image.src = "img/Area-2.jpg";
-        console.log(area2Image);
-
-        area1and1CollisionImage = new Image();
-        area1and1CollisionImage.src = "img/Area-1.1-store_collision.jpg";
-        console.log(area1and1CollisionImage);
-
-        //Left
-        image3 = new Image();
-        image3.src = "img/spriteL.png";
-        myspriteLImage = image3;
-        console.log(myspriteLImage);
-
-        //Right
-        image4 = new Image();
-        image4.src = "img/spriteR.png";
-        myspriteRImage = image4;
-        console.log(myspriteRImage);
-
-        //Stationary
-        image5 = new Image();
-        image5.src = "img/spriteS.png";
-        myspriteSImage = image5;
-        console.log(myspriteSImage);
     }
 }
 
+var mymapImage = mapImageImage;
+var mycollisionmapImage = collision_map_OneImageImage;
 
 
 function getPixel(url, x, y, colorv) {
@@ -234,27 +196,24 @@ function checkBounds(direction) {
 
 var bound = 0;
 
-
-
 function loadArea(newArea) {
     if (newArea == 1) {
-        mycollisionmapImage = image2;
-        mymapImage = image;
+        mycollisionmapImage = collision_map_OneImageImage;
+        mymapImage = mapImageImage;
         currentArea = 1;
 
     } else if (newArea == 1.1) {
-        mycollisionmapImage = area1and1CollisionImage;
+        mycollisionmapImage = Area-OneandOne-store_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
-        mymapImage = area1and1Image;
+        mymapImage = areaOneandOneImageImage;
         playerX = 905;
         playerY = 950;
         currentArea = 1.1;
 
-    }
-    else if (newArea == 2) {
-        mycollisionmapImage = area2CollisionImage;
+    } else if (newArea == 2) {
+        mycollisionmapImage = areaTwoCollisionImageImage;
         //mycollisionmapImage = testCollisionImage;
-        mymapImage = area2Image;
+        mymapImage = areaTwoImageImage;
         currentArea = 2;
         playerX = 1795;
         playerY = 1015;
@@ -311,13 +270,12 @@ function warp(lastpositionarea) {
         }
 
     }
-    
-        if (currentZone == 2) {
-            if (lastpositionarea == 1)
-                {
-                    console.log("Last area was area-1");
-                }
-            
+
+    if (currentZone == 2) {
+        if (lastpositionarea == 1) {
+            console.log("Last area was area-1");
+        }
+
 
     }
 }
@@ -417,8 +375,6 @@ function showColor() {
 
 function drawPlayer() {
 
-
-
     ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(mymapImage, 0, 0, c.width, c.height);
@@ -431,7 +387,7 @@ function drawPlayer() {
 
 
     ctx.beginPath();
-    ctx.drawImage(myspriteSImage, playerX, playerY);
+    ctx.drawImage(spriteSImageImage, playerX, playerY);
     ctx.stroke();
     showColor();
     checkMapColorValue();
@@ -439,6 +395,50 @@ function drawPlayer() {
 
 
 }
+
+
+
+
+
+//This array is indexed as follows:
+//Type, X-value, Y-value
+var enemyArray = [spriteEnemyOneImageImage, 50, 50, spriteEnemyOneImageImage, 100, 100, spriteEnemyOneImageImage, 200, 200, spriteEnemyOneImageImage, 400, 400, spriteEnemyOneImageImage, 800, 800, spriteEnemyOneImageImage, 1000, 1000];
+
+var enemyCount = (enemyArray.length / 3);
+console.log("Enemy Count: ", enemyCount);
+
+//
+//function createEnemy() {
+//
+//
+//}
+
+function drawEnemy() {
+    //Array Index Values:
+    var typeVal = 0;
+    var Xval = 1;
+    var Yval = 2;
+    var i;
+    for (i = 0; i < enemyCount; i++) {
+        
+        
+        
+        ctx = c.getContext("2d");
+        ctx.beginPath();
+
+        
+        
+        ctx.drawImage(enemyArray[typeVal], enemyArray[Xval], enemyArray[Yval]);
+        ctx.stroke();
+        typeVal += 3;
+        Xval += 3;
+        Yval += 3;
+    }
+    typeVal = 0;
+    Xval = 1;
+    Yval = 2;
+}
+
 
 
 
@@ -481,7 +481,7 @@ function onkeyup(e) {
     //RIGHT ARROW
     if (e.keyCode == codeKeyRight) {
         directionRight = false;
-        myspriteSImage.src = "img/spriteR.png";
+        spriteSImageImage.src = "img/spriteRImage.png";
     } else if (e.keyCode == codeKeyRightA) {
         directionRight = false;
     }
@@ -516,26 +516,26 @@ function playerMovement() {
 
     if (directionRight == true) {
         playerX += movementSpeed;
-        myspriteSImage.src = "img/spriteR.png";
+        spriteSImageImage.src = "img/spriteRImage.png";
         checkBounds("right");
 
     }
 
     if (directionLeft == true) {
         playerX -= movementSpeed;
-        myspriteSImage.src = "img/spriteL.png";
+        spriteSImageImage.src = "img/spriteLImage.png";
         checkBounds("left");
     }
 
     if (directionUp == true) {
         playerY -= movementSpeed;
-        myspriteSImage.src = "img/spriteU.png";
+        spriteSImageImage.src = "img/spriteUImage.png";
         checkBounds("up");
     }
 
     if (directionDown == true) {
         playerY += movementSpeed;
-        myspriteSImage.src = "img/spriteD.png";
+        spriteSImageImage.src = "img/spriteDImage.png";
         checkBounds("down");
     }
 
@@ -556,6 +556,7 @@ function update() {
     drawPlayer();
     playerMovement();
     debug();
+    drawEnemy();
 }
 
 
