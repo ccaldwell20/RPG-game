@@ -39,7 +39,7 @@ var ctxTwo;
 var CanHeightTwo;
 var CanWidthTwo;
 
-var PicList = new Array("mapImage", "collision_map_OneImage", "Area-OneandOne-storeImage", "Area-Two_collisionImage", "Area-TwoImage", "Area-OneandOne-store_collisionImage"); // A "list" of JPG images to load
+var PicList = new Array("mapImage", "collision_map_OneImage", "Area_OneandOne_storeImage", "Area_Two_collisionImage", "Area_TwoImage", "Area_OneandOne_store_collisionImage"); // A "list" of JPG images to load
 
 var PicListPng = new Array("spriteEnemyOneImage", "spriteLImage", "spriteRImage", "spriteSImage"); // A "list" of PNG images to load
 
@@ -51,6 +51,12 @@ var ImagesLoaded = 0;
 
 ///THIS WILL CHANGE(DONT FORGET)
 var currentZone = 1;
+
+
+//This will change with the start area
+
+
+
 
 
 
@@ -202,22 +208,31 @@ var bound = 0;
 
 function loadArea(newArea) {
     if (newArea == 1) {
+        //Update the enemys in the area.
+        enemyArrayChange(1);
+
         mycollisionmapImage = collision_map_OneImageImage;
         mymapImage = mapImageImage;
         currentArea = 1;
 
     } else if (newArea == 1.1) {
-        mycollisionmapImage = Area - OneandOne - store_collisionImageImage;
+        //Update the enemys in the area.
+        enemyArrayChange(1.1);
+
+        mycollisionmapImage = Area_OneandOne_store_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
-        mymapImage = areaOneandOneImageImage;
+        mymapImage = Area_OneandOne_storeImageImage;
         playerX = 905;
         playerY = 950;
         currentArea = 1.1;
 
     } else if (newArea == 2) {
-        mycollisionmapImage = areaTwoCollisionImageImage;
+        //Update the enemys in the area.
+        enemyArrayChange(2);
+
+        mycollisionmapImage = Area_Two_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
-        mymapImage = areaTwoImageImage;
+        mymapImage = Area_TwoImageImage;
         currentArea = 2;
         playerX = 1795;
         playerY = 1015;
@@ -401,12 +416,57 @@ function drawPlayer() {
 }
 
 
+function enemyArrayChange(area) {
+    console.log("running | enemyArrayChange");
+    
+    enemyArray = [];
+
+    if (area == 1) {
+        copyArray = enemyArrayAreaOne;
+
+    } else if (area == 1.1) {
+        copyArray = enemyArrayAreaOneandOne;
+
+    } else if (area == 2) {
+        copyArray = enemyArrayAreaTwo;
+
+    }
+
+    //Array Index Values:
+    var enemyTypeVal = 0;
+    var XenemyValue = 1;
+    var YenemyValue = 2;
+    var i;
+    enemyCount = (copyArray.length / 3);
+    var loopCount = 0;
+    for (i = 0; i < enemyCount; i++) {
+
+        enemyArray.push(copyArray[enemyTypeVal]);
+
+        enemyArray.push(copyArray[XenemyValue]);
+
+        enemyArray.push(copyArray[YenemyValue]);
+
+        enemyTypeVal += 3;
+        XenemyValue += 3;
+        YenemyValue += 3;
+    }
+    enemyTypeVal = 0;
+    XenemyValue = 1;
+    YenemyValue = 2;
+
+}
+
 
 
 
 //This array is indexed as follows:
 //Type, X-value, Y-value
+//EnemyArrayIndex
 var enemyArray = [spriteEnemyOneImageImage, 50, 50];
+var enemyArrayAreaOne = [spriteEnemyOneImageImage, 50, 50];
+var enemyArrayAreaOneandOne = [];
+var enemyArrayAreaTwo = [];
 
 
 
@@ -415,6 +475,16 @@ function createEnemy(type, x, y) {
     if (type == 1) {
         type = spriteEnemyOneImageImage;
     }
+
+    while (enemyArray.includes(x)) {
+        console.log("Tried to create an Enemy at Xval: ", x, " | Changed value to ", (x + 5), " to prevent conflicts!");
+        x += 5;
+    }
+    while (enemyArray.includes(y)) {
+        console.log("Tried to create an Enemy at Yval: ", y, " | Changed value to ", (y + 5), " to prevent conflicts!");
+        y += 5;
+    }
+
     enemyArray.push(type, x, y);
     ctx = c.getContext("2d");
     ctx.beginPath();
@@ -493,7 +563,7 @@ function pushEnemyXYvalues() {
 
 }
 
-var enemyRadius = 20;
+var enemyRadius = 70;
 var xHit = false;
 var yHit = false;
 
@@ -501,16 +571,22 @@ function checkEnemyInteract() {
     var i;
     var indexx = 0;
     var indexy = 0;
+    var positionInIndexx = 0;
+    var positionInIndexy = 0;
+    var loop = 0;
 
     for (i = 0; i < enemyCount; i++) {
+        //        loop += 1;
+        //        console.log(loop);
 
-
-        if (inRange(enemyXvalueArray[indexx], (playerX - enemyRadius), (playerX + enemyRadius))) {
+        if (enemyXvalueArray[indexx] >= (playerX - 5) && enemyXvalueArray[indexx] <= (playerX + 5)) {
             xHit = true;
+            positionInIndexx = indexx;
 
         }
-        if (inRange(enemyYvalueArray[indexy], (playerY - enemyRadius), (playerY + enemyRadius))) {
+        if (enemyYvalueArray[indexy] >= (playerY - 5) && enemyYvalueArray[indexy] <= (playerY + 5)) {
             yHit = true;
+            positionInIndexy = indexy;
 
         }
 
@@ -520,9 +596,9 @@ function checkEnemyInteract() {
     }
     indexx = 0;
     indexy = 0;
-    
-    if(xHit && yHit == true){
-        console.log("ENEMY INTERACTION");
+
+    if (xHit && yHit == true) {
+        console.log("ENEMY INTERACTION with Enemy -", positionInIndexx, "-");
     }
     xHit = false;
     yHit = false;
