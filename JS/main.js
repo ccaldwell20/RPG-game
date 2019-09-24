@@ -138,6 +138,7 @@ function checkBounds(direction) {
     if (direction == "up") {
         xPos = playerX;
         yPos = playerY;
+        checkEnemyInteract();
 
         if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) &&
             inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) &&
@@ -154,6 +155,7 @@ function checkBounds(direction) {
     if (direction == "down") {
         xPos = playerX;
         yPos = playerY + 30;
+        checkEnemyInteract();
 
         if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) &&
             inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) &&
@@ -165,6 +167,7 @@ function checkBounds(direction) {
     if (direction == "left") {
         xPos = playerX;
         yPos = playerY;
+        checkEnemyInteract();
 
         if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) || inRange(getPixel('./bg.png', xPos, yPos + 30, "red"), 228, 238) &&
             inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) || inRange(getPixel('./bg.png', xPos, yPos + 30, "green"), 0, 4) &&
@@ -179,6 +182,7 @@ function checkBounds(direction) {
     if (direction == "right") {
         xPos = playerX + 30;
         yPos = playerY;
+        checkEnemyInteract();
 
         if (inRange(getPixel('./bg.png', xPos, yPos, "red"), 228, 238) || inRange(getPixel('./bg.png', xPos, yPos + 30, "red"), 228, 238) &&
             inRange(getPixel('./bg.png', xPos, yPos, "green"), 0, 4) || inRange(getPixel('./bg.png', xPos, yPos + 30, "green"), 0, 4) &&
@@ -414,7 +418,7 @@ function createEnemy(type, x, y) {
     enemyArray.push(type, x, y);
     ctx = c.getContext("2d");
     ctx.beginPath();
-    console.log("Enemy Count: ", enemyCount+1);
+    console.log("Enemy Count: ", enemyCount + 1);
 
 
 }
@@ -424,8 +428,8 @@ var enemyCount = (enemyArray.length / 3);
 function drawEnemy() {
     //Update the XY value list if needed
     pushEnemyXYvalues();
-    
-    
+
+
     //Array Index Values:
     var typeVal = 0;
     var Xval = 1;
@@ -448,7 +452,7 @@ function drawEnemy() {
     typeVal = 0;
     Xval = 1;
     Yval = 2;
-    
+
 }
 
 var enemyXvalueArray = [];
@@ -456,37 +460,72 @@ var enemyYvalueArray = [];
 
 
 var initialEnemyCount;
-function pushEnemyXYvalues(){
+
+function pushEnemyXYvalues() {
     //Array Index Values:
     var i;
     var index1 = 1;
     var index2 = 2;
     var loop = 0;
-    
+
     enemyCount = (enemyArray.length / 3);
-    
-    if (enemyCount != initialEnemyCount){
+
+    if (enemyCount != initialEnemyCount) {
         initialEnemyCount = enemyCount;
         console.log("Running");
         enemyXvalueArray = [];
         enemyYvalueArray = [];
         console.log("Purged enemyXYvalue Arrays!")
 
-    for (i = 0; i < enemyCount; i++) {
-        console.log(loop+=1);
-        
-        enemyX = enemyArray[index1];
-        enemyY = enemyArray[index2];
-        enemyXvalueArray.push(enemyX);
-        enemyYvalueArray.push(enemyY);
-        index1 += 3;
-        index2 += 3;
-    }
-    index1 = 1;
-    index2 = 2;
+        for (i = 0; i < enemyCount; i++) {
+            console.log(loop += 1);
+
+            enemyX = enemyArray[index1];
+            enemyY = enemyArray[index2];
+            enemyXvalueArray.push(enemyX);
+            enemyYvalueArray.push(enemyY);
+            index1 += 3;
+            index2 += 3;
+        }
+        index1 = 1;
+        index2 = 2;
     }
 
+}
+
+var enemyRadius = 20;
+var xHit = false;
+var yHit = false;
+
+function checkEnemyInteract() {
+    var i;
+    var indexx = 0;
+    var indexy = 0;
+
+    for (i = 0; i < enemyCount; i++) {
+
+
+        if (inRange(enemyXvalueArray[indexx], (playerX - enemyRadius), (playerX + enemyRadius))) {
+            xHit = true;
+
+        }
+        if (inRange(enemyYvalueArray[indexy], (playerY - enemyRadius), (playerY + enemyRadius))) {
+            yHit = true;
+
+        }
+
+
+        indexx += 1;
+        indexy += 1;
+    }
+    indexx = 0;
+    indexy = 0;
     
+    if(xHit && yHit == true){
+        console.log("ENEMY INTERACTION");
+    }
+    xHit = false;
+    yHit = false;
 }
 
 
