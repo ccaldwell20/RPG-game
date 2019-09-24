@@ -39,9 +39,9 @@ var ctxTwo;
 var CanHeightTwo;
 var CanWidthTwo;
 
-var PicList = new Array("mapImage", "collision_map_OneImage","Area-OneandOne-storeImage","Area-Two_collisionImage","Area-TwoImage","Area-OneandOne-store_collisionImage"); // A "list" of JPG images to load
+var PicList = new Array("mapImage", "collision_map_OneImage", "Area-OneandOne-storeImage", "Area-Two_collisionImage", "Area-TwoImage", "Area-OneandOne-store_collisionImage"); // A "list" of JPG images to load
 
-var PicListPng = new Array("spriteEnemyOneImage", "spriteLImage","spriteRImage","spriteSImage"); // A "list" of PNG images to load
+var PicListPng = new Array("spriteEnemyOneImage", "spriteLImage", "spriteRImage", "spriteSImage"); // A "list" of PNG images to load
 
 var image;
 var ImagesLoaded = 0;
@@ -80,7 +80,7 @@ function PreGame() // Do Pre_Game stuff, like preload the images needed
         window[PicList[Next] + 'Image'] = preLoadImage('img/' + PicList[Next] + '.jpg');
         Next++;
     }
-    
+
     var NextTwo = 0;
 
     while (NextTwo <= (PicListPng.length - 1)) {
@@ -203,7 +203,7 @@ function loadArea(newArea) {
         currentArea = 1;
 
     } else if (newArea == 1.1) {
-        mycollisionmapImage = Area-OneandOne-store_collisionImageImage;
+        mycollisionmapImage = Area - OneandOne - store_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
         mymapImage = areaOneandOneImageImage;
         playerX = 905;
@@ -402,32 +402,43 @@ function drawPlayer() {
 
 //This array is indexed as follows:
 //Type, X-value, Y-value
-var enemyArray = [spriteEnemyOneImageImage, 50, 50, spriteEnemyOneImageImage, 100, 100, spriteEnemyOneImageImage, 200, 200, spriteEnemyOneImageImage, 400, 400, spriteEnemyOneImageImage, 800, 800, spriteEnemyOneImageImage, 1000, 1000];
+var enemyArray = [spriteEnemyOneImageImage, 50, 50];
+
+
+
+
+function createEnemy(type, x, y) {
+    if (type == 1) {
+        type = spriteEnemyOneImageImage;
+    }
+    enemyArray.push(type, x, y);
+    ctx = c.getContext("2d");
+    ctx.beginPath();
+    console.log("Enemy Count: ", enemyCount+1);
+
+
+}
 
 var enemyCount = (enemyArray.length / 3);
-console.log("Enemy Count: ", enemyCount);
-
-//
-//function createEnemy() {
-//
-//
-//}
 
 function drawEnemy() {
+    //Update the XY value list if needed
+    pushEnemyXYvalues();
+    
+    
     //Array Index Values:
     var typeVal = 0;
     var Xval = 1;
     var Yval = 2;
     var i;
+    enemyCount = (enemyArray.length / 3);
+    var loopCount = 0;
     for (i = 0; i < enemyCount; i++) {
-        
-        
-        
+
+
         ctx = c.getContext("2d");
         ctx.beginPath();
 
-        
-        
         ctx.drawImage(enemyArray[typeVal], enemyArray[Xval], enemyArray[Yval]);
         ctx.stroke();
         typeVal += 3;
@@ -437,6 +448,45 @@ function drawEnemy() {
     typeVal = 0;
     Xval = 1;
     Yval = 2;
+    
+}
+
+var enemyXvalueArray = [];
+var enemyYvalueArray = [];
+
+
+var initialEnemyCount;
+function pushEnemyXYvalues(){
+    //Array Index Values:
+    var i;
+    var index1 = 1;
+    var index2 = 2;
+    var loop = 0;
+    
+    enemyCount = (enemyArray.length / 3);
+    
+    if (enemyCount != initialEnemyCount){
+        initialEnemyCount = enemyCount;
+        console.log("Running");
+        enemyXvalueArray = [];
+        enemyYvalueArray = [];
+        console.log("Purged enemyXYvalue Arrays!")
+
+    for (i = 0; i < enemyCount; i++) {
+        console.log(loop+=1);
+        
+        enemyX = enemyArray[index1];
+        enemyY = enemyArray[index2];
+        enemyXvalueArray.push(enemyX);
+        enemyYvalueArray.push(enemyY);
+        index1 += 3;
+        index2 += 3;
+    }
+    index1 = 1;
+    index2 = 2;
+    }
+
+    
 }
 
 
