@@ -205,7 +205,7 @@ var bound = 0;
 function loadArea(newArea) {
     if (newArea == 1) {
         //Update the enemys in the area.
-        enemyArrayChange(1);
+
 
         mycollisionmapImage = collision_map_OneImageImage;
         mymapImage = mapImageImage;
@@ -213,7 +213,7 @@ function loadArea(newArea) {
 
     } else if (newArea == 1.1) {
         //Update the enemys in the area.
-        enemyArrayChange(1.1);
+
 
         mycollisionmapImage = Area_OneandOne_store_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
@@ -224,7 +224,7 @@ function loadArea(newArea) {
 
     } else if (newArea == 2) {
         //Update the enemys in the area.
-        enemyArrayChange(2);
+
 
         mycollisionmapImage = Area_Two_collisionImageImage;
         //mycollisionmapImage = testCollisionImage;
@@ -412,55 +412,13 @@ function drawPlayer() {
 }
 
 
-function enemyArrayChange(area) {
-    console.log("running | enemyArrayChange");
-    
-    enemyArray = [];
-
-    if (area == 1) {
-        copyArray = enemyArrayAreaOne;
-
-    } else if (area == 1.1) {
-        copyArray = enemyArrayAreaOneandOne;
-
-    } else if (area == 2) {
-        copyArray = enemyArrayAreaTwo;
-
-    }
-
-    //Array Index Values:
-    var enemyTypeVal = 0;
-    var XenemyValue = 1;
-    var YenemyValue = 2;
-    var i;
-    enemyCount = (copyArray.length / 3);
-    var loopCount = 0;
-    for (i = 0; i < enemyCount; i++) {
-
-        enemyArray.push(copyArray[enemyTypeVal]);
-
-        enemyArray.push(copyArray[XenemyValue]);
-
-        enemyArray.push(copyArray[YenemyValue]);
-
-        enemyTypeVal += 3;
-        XenemyValue += 3;
-        YenemyValue += 3;
-    }
-    enemyTypeVal = 0;
-    XenemyValue = 1;
-    YenemyValue = 2;
-
-}
-
-
-
 
 //This array is indexed as follows:
 //Type, X-value, Y-value
 //EnemyArrayIndex
-var enemyArray = [spriteEnemyOneImageImage, 50, 50];
-var enemyArrayAreaOne = [spriteEnemyOneImageImage, 50, 50];
+//spriteEnemyOneImageImage, 50, 50
+var enemyArray;
+var enemyArrayAreaOne = [];
 var enemyArrayAreaOneandOne = [];
 var enemyArrayAreaTwo = [];
 
@@ -468,6 +426,8 @@ var enemyArrayAreaTwo = [];
 
 
 function createEnemy(type, x, y) {
+
+    enemyArray = findEnemyArrayOfCurrentLocation();
     if (type == 1) {
         type = spriteEnemyOneImageImage;
     }
@@ -484,18 +444,25 @@ function createEnemy(type, x, y) {
     enemyArray.push(type, x, y);
     ctx = c.getContext("2d");
     ctx.beginPath();
-    console.log("Enemy Count: ", enemyCount+1);
+    console.log("Enemy Count: ", enemyCount + 1);
 
 
 }
 
-var enemyCount = (enemyArray.length / 3);
+function updateEnemyCount() {
+    var enemyCount = (enemyArray.length / 3);
+}
 
 function drawEnemy() {
-    //Update the XY value list if needed
-    pushEnemyXYvalues();
-    
-    
+
+    //Find the correct array to use
+    enemyArray = findEnemyArrayOfCurrentLocation();
+
+
+    //Update enemyCount
+    enemyCount = (enemyArray.length / 3);
+
+
     //Array Index Values:
     var typeVal = 0;
     var Xval = 1;
@@ -518,47 +485,21 @@ function drawEnemy() {
     typeVal = 0;
     Xval = 1;
     Yval = 2;
-    
+
 }
 
-var enemyXvalueArray = [];
-var enemyYvalueArray = [];
-
-
-var initialEnemyCount;
-function pushEnemyXYvalues(){
-    //Array Index Values:
-    var i;
-    var index1 = 1;
-    var index2 = 2;
-    var loop = 0;
-    
-    enemyCount = (enemyArray.length / 3);
-    
-    if (enemyCount != initialEnemyCount){
-        initialEnemyCount = enemyCount;
-        console.log("Running");
-        enemyXvalueArray = [];
-        enemyYvalueArray = [];
-        console.log("Purged enemyXYvalue Arrays!")
-
-    for (i = 0; i < enemyCount; i++) {
-        console.log(loop+=1);
-        
-        enemyX = enemyArray[index1];
-        enemyY = enemyArray[index2];
-        enemyXvalueArray.push(enemyX);
-        enemyYvalueArray.push(enemyY);
-        index1 += 3;
-        index2 += 3;
+function findEnemyArrayOfCurrentLocation() {
+    if (currentArea == 1) {
+        return enemyArrayAreaOne;
     }
-    index1 = 1;
-    index2 = 2;
+    if (currentArea == 1.1) {
+        return enemyArrayAreaOneandOne;
+    }
+    if (currentArea == 2) {
+        return enemyArrayAreaTwo;
     }
 
-    
 }
-
 
 
 
@@ -677,6 +618,7 @@ function update() {
     playerMovement();
     debug();
     drawEnemy();
+    updateEnemyCount();
 }
 
 
